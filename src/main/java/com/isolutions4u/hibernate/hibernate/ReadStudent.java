@@ -27,18 +27,39 @@ public class ReadStudent {
             //todo create a student object
             System.out.println("Creating new student object.....");
             Student student = new
-                    Student("Sushil", "Dangi", "dangi.sushil5@gmail.com");
+                    Student("Ram", "Kumar", "ram@gmail.com");
             //todo start transaction
 
             session.beginTransaction();
 
             //todo save the student object
-            System.out.println("Saving the student...");
+            System.out.println("Saving the student..." + student);
 
             session.save(student);
 
             //todo commit transaction
             session.getTransaction().commit();
+
+
+            // todo : find out the student id : primary key
+
+            System.out.println("Saved Student. Generated Id : " + student.getId());
+
+            // TODO : now get new session and start transaction
+
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+
+            // TODO : retrieve student based on the id : primary key
+
+            System.out.println("\nGetting student with id : " + student.getId());
+            Student newStudent = session.get(Student.class, student.getId());
+
+            System.out.println("Get Complete :" + newStudent);
+
+            // TODO : commit the transaction
+            session.getTransaction().commit();
+
             System.out.println("Done!");
         } finally {
             factory.close();
