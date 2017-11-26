@@ -18,7 +18,13 @@ public class InstructorDetail {
     private String hobby;
 
     // TODO : ADD NEW FIELD FOR INSTRUCTOR (Also add getter and setter)
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "instructorDetail",
+            cascade = {
+                    CascadeType.DETACH,
+                    CascadeType.MERGE,
+                    CascadeType.PERSIST,
+                    CascadeType.REFRESH
+            })
     private Instructor instructor;
 
 

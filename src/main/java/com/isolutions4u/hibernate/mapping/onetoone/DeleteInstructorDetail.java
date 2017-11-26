@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class GetInstructorDetail {
+public class DeleteInstructorDetail {
 
     public static void main(String[] args) {
         // todo create session factory
@@ -30,7 +30,7 @@ public class GetInstructorDetail {
 
             // TODO : get the Instructor Detail object
 
-            int id = 2;
+            int id = 3;
 
             InstructorDetail instructorDetail = session
                     .get(InstructorDetail.class, id);
@@ -43,6 +43,15 @@ public class GetInstructorDetail {
 
             System.out.println("The Associate instructor : " + instructorDetail.getInstructor());
 
+            // TODO : remove the associated object reference
+            // TODO : break bi-directional link
+            instructorDetail.getInstructor().setInstructorDetail(null);
+
+            // TODO : now let's delete the instructor detail
+
+            System.out.println("Deleting instructorDetail : " + instructorDetail);
+            session.delete(instructorDetail);
+
             // TODO : commit transaction
             session.getTransaction().commit();
 
@@ -52,8 +61,12 @@ public class GetInstructorDetail {
             e.printStackTrace();
         } finally {
             // TODO : handle connection leak issue
-            session.close();
-            factory.close();
+            if (session.isOpen()) {
+                session.close();
+            }
+            if (!factory.isClosed()) {
+                factory.close();
+            }
         }
     }
 }
