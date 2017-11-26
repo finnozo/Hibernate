@@ -40,7 +40,7 @@ public class Create {
                             "Love Coding");
 
             // TODO : Associate the object
-            instructor.setInstructionDetail(instructorDetail);
+            instructor.setInstructorDetail(instructorDetail);
 
             //todo start transaction
 
