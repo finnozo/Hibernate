@@ -1,12 +1,13 @@
-package com.isolutions4u.hibernate.mapping.onetoone;
+package com.isolutions4u.hibernate.mapping.onetomany;
 
+import com.isolutions4u.hibernate.entity.Course;
 import com.isolutions4u.hibernate.entity.Instructor;
 import com.isolutions4u.hibernate.entity.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Create {
+public class CreateInstructor {
 
     public static void main(String[] args) {
         // todo create session factory
@@ -16,6 +17,7 @@ public class Create {
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
+                .addAnnotatedClass(Course.class)
                 .buildSessionFactory();
 
 
@@ -29,15 +31,15 @@ public class Create {
 
             Instructor instructor =
                     new Instructor(
-                            "Sushil",
-                            "Dangi",
-                            "sushil@pirq.com");
+                            "Gaurav",
+                            "Kapoor",
+                            "gaurav@pirq.com");
 
 
             InstructorDetail instructorDetail =
                     new InstructorDetail(
-                            "https://www.youtube.com/sushildangi",
-                            "Love Coding");
+                            "https://www.youtube.com/ggkk",
+                            "Coding");
 
             // TODO : Associate the object
             instructor.setInstructorDetail(instructorDetail);
@@ -57,6 +59,9 @@ public class Create {
             System.out.println("Done!");
         } finally {
             factory.close();
+            if (session.isOpen()) {
+                session.close();
+            }
         }
     }
 }
