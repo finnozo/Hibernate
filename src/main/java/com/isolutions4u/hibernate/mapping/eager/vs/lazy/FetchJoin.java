@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class EagerLazy {
+public class FetchJoin {
 
     public static void main(String[] args) {
         // todo create session factory
@@ -43,10 +43,10 @@ public class EagerLazy {
             //todo commit transaction
             session.getTransaction().commit();
 
-            //Todo : Option 1
+
             System.out.println("ISolutions4u : Session Is Close !!");
 
-            System.out.println("ISolutions4u Option 1 : Courses : " + instructor.getCourses());
+            System.out.println("ISolutions4u : Courses : " + instructor.getCourses());
 
             System.out.println("ISolutions4u : Done!");
         } finally {
