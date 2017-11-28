@@ -26,7 +26,9 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
-    @OneToMany(mappedBy = "instructor",
+    @OneToMany(
+            fetch = FetchType.LAZY,//Todo : This for Eager and Lazy Demo
+            mappedBy = "instructor",
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.DETACH,
